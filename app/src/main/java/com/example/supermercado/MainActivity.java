@@ -68,11 +68,14 @@ public class MainActivity extends AppCompatActivity {
         EditText nome = findViewById(R.id.editNome);
         String nomeText = nome.getText().toString();
 
+        EditText quantidade = findViewById(R.id.editQuantidade);
+        EditText preco = findViewById(R.id.editPreco);
 
         if(!(nomeText.equals(""))) {
             itemsAdapter.add(nomeText);
             nome.setText("");
-
+            quantidade.setText("");
+            preco.setText("");
         } else {
             Toast.makeText(getApplicationContext(), "Please enter text...", Toast.LENGTH_LONG).show();
         }
