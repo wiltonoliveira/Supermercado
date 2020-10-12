@@ -42,8 +42,8 @@ public class Adapter extends ArrayAdapter<Produto> {
         TextView tvValor = (TextView) convertView.findViewById(R.id.textView3);
 
         tvNome.setText(nome);
-        tvQuantidade.setText(Integer.toString(quantidade));
-        tvValor.setText(Double.toString(valor));
+        tvQuantidade.setText("Quantidade: " + Integer.toString(quantidade));
+        tvValor.setText("Preço: " + Double.toString(valor));
 
         return convertView;
     }
