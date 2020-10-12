@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> items;
-    private ArrayAdapter<String> itemsAdapter;
+    private ArrayList<Produto> items;
+    private Adapter itemsAdapter;
     private ListView lista;
     private Button addButton;
 
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         items = new ArrayList<>();
-        itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
+        itemsAdapter = new Adapter(this, R.layout.item_layout, items);
         lista.setAdapter(itemsAdapter);
         setUpListViewListener();
     }
@@ -69,15 +69,15 @@ public class MainActivity extends AppCompatActivity {
         String nomeText = nome.getText().toString();
 
         EditText quantidade = findViewById(R.id.editQuantidade);
-        String quantidadeText = quantidade.getText().toString();
+        int quantidadeText = Integer.parseInt(quantidade.getText().toString());
 
         EditText preco = findViewById(R.id.editPreco);
-        String precoText = preco.getText().toString();
+        double precoText = Double.parseDouble(preco.getText().toString());
 
-        String saida = nomeText + " | " + "Quantidade: " + quantidadeText + " | " + "Preço: " + precoText;
-
+        Produto produto = new Produto(nomeText, quantidadeText, precoText);
+        
         if(!(nomeText.equals(""))) {
-            itemsAdapter.add(saida);
+            itemsAdapter.add(produto);
 
             nome.setText("");
             quantidade.setText("");

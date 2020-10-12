@@ -5,11 +5,13 @@ public class Produto {
     private int quantidade;
     private double valor;
 
+
     public Produto(String nome, int quantidade, double valor) {
         this.nome = nome;
         this.quantidade = quantidade;
         this.valor = valor;
     }
+
 
     public void setNome(String nome) {
         this.nome = nome;
