@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/ordenar"
+        android:title="Ordenar"
+        app:showAsAction="never" >
+
+        <menu>
+            <item android:id="@+id/porNome"
+                android:title="Por Nome"
+                app:showAsAction="never" />
+
+            <item android:id="@+id/porPreco"
+                android:title="Por Preço"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/valorTotal"
+        android:title="Valor Total"
+        app:showAsAction="never" />
+
+</menu>
