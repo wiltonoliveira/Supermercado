@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(!(nomeText.equals(""))) {
             itemsAdapter.add(nomeText);
+
             nome.setText("");
             quantidade.setText("");
             preco.setText("");
