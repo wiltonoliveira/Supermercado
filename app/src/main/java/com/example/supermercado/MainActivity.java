@@ -69,10 +69,15 @@ public class MainActivity extends AppCompatActivity {
         String nomeText = nome.getText().toString();
 
         EditText quantidade = findViewById(R.id.editQuantidade);
+        String quantidadeText = quantidade.getText().toString();
+
         EditText preco = findViewById(R.id.editPreco);
+        String precoText = preco.getText().toString();
+
+        String saida = nomeText + " | " + "Quantidade: " + quantidadeText + " | " + "Preço: " + precoText;
 
         if(!(nomeText.equals(""))) {
-            itemsAdapter.add(nomeText);
+            itemsAdapter.add(saida);
 
             nome.setText("");
             quantidade.setText("");
