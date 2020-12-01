@@ -1,10 +1,21 @@
 package com.example.supermercado;
 
-public class Produto {
-    private String nome;
-    private int quantidade;
-    private double valor;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "Produtos")
+public class Produto {
+    @PrimaryKey
+  //  private int id;
+    @NonNull
+    @ColumnInfo(name = "nome")
+    private String nome;
+    @ColumnInfo(name = "quantidade")
+    private int quantidade;
+    @ColumnInfo(name = "valor")
+    private double valor;
 
     public Produto(String nome, int quantidade, double valor) {
         this.nome = nome;

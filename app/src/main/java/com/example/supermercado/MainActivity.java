@@ -44,9 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        items = new ArrayList<>();
+        items = (ArrayList<Produto>) AppDatabase.getInstance(getApplicationContext()).ProdutoDAO().getAll();
         itemsAdapter = new Adapter(this, R.layout.item_layout, items);
         lista.setAdapter(itemsAdapter);
         setUpListViewListener();
@@ -137,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
         final EditText quantidade = (EditText) dialogo.findViewById(R.id.editQuantidade);
         final EditText valor = (EditText) dialogo.findViewById(R.id.editPreco);
 
-
         nome.setText(itemAntigo.getNome());
         quantidade.setText(Integer.toString(itemAntigo.getQuantidade()));
         valor.setText(Double.toString(itemAntigo.getValor()));
@@ -152,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
                 itemsAdapter.notifyDataSetChanged();
                 dialogo.dismiss();
-
+                AppDatabase.getInstance(getApplicationContext()).ProdutoDAO().update(itemAntigo);
                 Toast.makeText(MainActivity.this, "Item Editado com sucesso", Toast.LENGTH_LONG).show();
             }
         });
@@ -167,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 Context context = getApplicationContext();
                 Toast.makeText(context, "Item Removido", Toast.LENGTH_LONG).show();
 
+                AppDatabase.getInstance(getApplicationContext()).ProdutoDAO().delete(items.get(i));
                 items.remove(i);
                 itemsAdapter.notifyDataSetChanged();
                 return true;
@@ -217,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!(nomeText.equals(""))) {
             itemsAdapter.add(produto);
+            AppDatabase.getInstance(getApplicationContext()).ProdutoDAO().insert(produto);
 
             nome.setText("");
             quantidade.setText("");
