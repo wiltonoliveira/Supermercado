@@ -32,6 +32,8 @@ dependencies {
 
     def room_version = "2.2.5"
 
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 

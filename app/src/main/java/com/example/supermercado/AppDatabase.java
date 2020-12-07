@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Produto.class}, version = 2)
+@Database(entities = {Produto.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DAO ProdutoDAO();
     private static AppDatabase instancia;

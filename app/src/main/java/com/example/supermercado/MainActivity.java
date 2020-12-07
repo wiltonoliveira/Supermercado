@@ -17,9 +17,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Adapter itemsAdapter;
     private ListView lista;
     private Button addButton;
+    private Double usd;
 
 
     @Override
@@ -48,6 +60,35 @@ public class MainActivity extends AppCompatActivity {
         itemsAdapter = new Adapter(this, R.layout.item_layout, items);
         lista.setAdapter(itemsAdapter);
         setUpListViewListener();
+
+        String url = "https://economia.awesomeapi.com.br/all/USD-BRL";
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(response.isSuccessful()) {
+                    final String myResponse = response.body().string();
+
+                    MainActivity.this.runOnUiThread((new Runnable() {
+                        @Override
+                        public void run() {
+                                System.out.println(myResponse.substring(69,74));
+                                usd = Double.parseDouble(myResponse.substring(69,74));
+                        }
+                    }));
+                }
+            }
+        });
+
     }
 
     @Override
@@ -121,7 +162,8 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView valor = (TextView) dialogo.findViewById(R.id.textTotal);
 
-        valor.setText("Valor Total: " +Double.toString(getTotal()));
+        valor.setText("Valor Total: " +
+                Double.toString(getTotal()) + " (USD: " + Double.toString(getTotal() / usd) + ")");
 
         dialogo.show();
     }
