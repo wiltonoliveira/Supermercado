@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                                 System.out.println(myResponse.substring(69,74));
-                                usd = Double.parseDouble(myResponse.substring(69,74));
+                                usd = Double.parseDouble(myResponse.substring(69,72));
                         }
                     }));
                 }
